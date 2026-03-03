@@ -1,120 +1,112 @@
 # Statistics Course - Python Practicals
 
-Python implementations and visualizations for practical exercises in Statistics.
+Python implementations for Statistics practical sessions (TDs - Travaux Dirigés), including descriptive analysis and visualizations.
 
-## Project Overview
+## Overview
 
-This repository contains solutions and educational examples for Statistics course practicals (TDs - Travaux Dirigés). Each module focuses on different statistical concepts with practical implementations using Python, including data analysis, visualization, and quantitative methods.
+This repository is organized by TD modules. Each TD file contains one or more functions that implement a specific statistical concept (quartiles, medians, grouped data, weighted data, and applied analysis).
 
 ## Repository Structure
 
 ```
 Statistics_cours-python-/
-├── README.md                 # Project documentation
-├── LICENSE                   # License information
-├── Td4_Dzhafarov.py         # TD4: Statistical measures and box plots
+├── README.md
+├── LICENSE
+└── Td4_Dzhafarov.py
 ```
 
-## Course Topics
+## Modules Index
 
-The repository covers the following statistical topics:
+| TD | File | Scope | Status |
+|----|------|-------|--------|
+| TD4 | `Td4_Dzhafarov.py` | Quartiles, box plots, grouped data, weighted data, demographic analysis | Available |
+| TD1 | _To be added_ | _To be defined_ | Planned |
+| TD2 | _To be added_ | _To be defined_ | Planned |
+| TD3 | _To be added_ | _To be defined_ | Planned |
 
-### TD4: Quartiles, Box Plots, and Distribution Analysis
+## TD4 - Function Reference
 
-#### Functions Overview
+### Core Exercises
 
-| Function | Description |
-|----------|-------------|
-| `example()` | Basic introduction to quartiles (Q1, Q2, Q3) calculation and box plot visualization for two datasets. |
-| `ex1()` | Demonstrates the impact of outliers on mean vs. median through comparison with visual indicators. |
-| `ex2()` | Advanced box plot with quartiles, median, and mean reference lines overlaid for two data series. |
-| `mediane_quartiles_avec_effectifs1(values)` | Calculates quartiles from frequency-weighted data using NumPy's quantile method. Handles (value, frequency) pairs. |
-| `mediane_quartiles_avec_effectifs2(values)` | Alternative quartile calculation using the (n+1)/4 interpolation method for weighted data. |
-| `ex3()` | Compares two quartile calculation methods (NumPy vs. (n+1)/4) side-by-side with visual representation. |
-| `exercice4(classes, values)` | Calculates quartiles from grouped/classified data (intervals with frequencies). Returns Q1, median, Q3. |
-| `exercice4_tests()` | Test cases for grouped data quartile calculation with real-world examples and SLA evaluation. |
-| `probleme1()` | Complex analysis of French population age distribution (1991-2023) using pandas, including mean/median trends and population aging insights. |
+| Function | Role |
+|----------|------|
+| `example()` | Computes quartiles for two datasets and generates a comparison box plot. |
+| `ex1()` | Compares mean and median behavior under an outlier change and plots both datasets. |
+| `ex2()` | Computes quartiles/median/mean for two series and overlays reference lines on box plots. |
 
-#### Function Details
+### Frequency-Weighted Quartiles
 
-**Basic Exercises (example, ex1, ex2)**
-- Focus on direct quartile and median calculation
-- Demonstrate box plot visualization
-- Show impact of outliers on statistical measures
+| Function | Role |
+|----------|------|
+| `mediane_quartiles_avec_effectifs1(values)` | Expands `(value, frequency)` data and computes quartiles with `numpy.quantile`. |
+| `mediane_quartiles_avec_effectifs2(values)` | Computes quartiles from weighted data using 
+an interpolation approach based on `(n+1)/4`. |
+| `ex3()` | Compares both quartile methods side-by-side with printed results and plots. |
 
-**Frequency-Weighted Data (mediane_quartiles_avec_effectifs1, mediane_quartiles_avec_effectifs2, ex3)**
-- Handle data with frequency counts
-- Compare different quartile interpolation methods
-- Validate calculation approaches
+### Grouped Data and Validation
 
-**Grouped Data Analysis (exercice4, exercice4_tests)**
-- Calculate statistics from binned/classified data
-- Apply interpolation formulas for continuous distributions
-- Include SLA (Service Level Agreement) evaluation examples
+| Function | Role |
+|----------|------|
+| `exercice4(classes, values)` | Calculates Q1, median, and Q3 from grouped class intervals using interpolation. |
+| `exercice4_tests()` | Runs example scenarios for grouped quartiles, including an SLA-style interpretation. |
 
-**Advanced Analysis (probleme1)**
-- Uses pandas for data manipulation
-- Time-series analysis of demographic data
-- Comprehensive statistical reporting with visualizations
+### Applied Demographic Analysis
 
-
+| Function | Role |
+|----------|------|
+| `probleme1()` | Analyzes median/mean age trends by gender over time from CSV data and generates visual output. |
 
 ## Requirements
 
-- Python 3.7+
+- Python 3.8+
 - numpy
 - matplotlib
 - pandas
 
 ## Installation
 
-Clone the repository:
-
 ```bash
 git clone https://github.com/Gog2006/Statistics_cours-python-.git
 cd Statistics_cours-python-
-```
-
-Install dependencies:
-
-```bash
 pip install numpy matplotlib pandas
 ```
 
 ## Usage
 
-Each TD module contains executable functions demonstrating different statistical concepts.
+### Run all TD4 scripts
 
-### Running TD4 Exercises
-
-Import and run specific exercises from TD4:
-
-```python
-from Td4_Dzhafarov import example, ex1, ex2, ex3, exercice4_tests, probleme1
-
-# Run basic examples
-example()          # Quartiles and box plots
-ex1()              # Mean vs median with outliers
-ex2()              # Detailed statistical analysis and visualization
-
-# Run frequency-weighted data analysis
-ex3()              # Compare quartile calculation methods
-
-# Run grouped data analysis
-exercice4_tests()  # Quartiles from classified data with SLA evaluation
-
-# Run advanced analysis
-probleme1()        # French population age analysis (requires CSV data)
+```bash
+python Td4_Dzhafarov.py
 ```
 
-### Output
+### Run selected functions
 
-Visualizations are saved to the Downloads folder in PNG format with high resolution (200+ DPI).
+```python
+from Td4_Dzhafarov import ex1, ex2, ex3, exercice4_tests, probleme1
 
-## Contributing
+ex1()
+ex2()
+ex3()
+exercice4_tests()
+# probleme1()  # Requires the expected CSV input file path used in the script
+```
 
-Contributions and improvements to existing solutions are welcome. Please ensure code follows the project structure for scalability.
+## Notes
+
+- Most plots are saved as PNG files in the local Downloads directory.
+- `probleme1()` depends on a CSV dataset path currently hardcoded in `Td4_Dzhafarov.py`.
+
+## Scalability Convention for Future TDs
+
+For each new TD file, keep the same structure:
+
+1. Add one row in Modules Index.
+2. Add a section `## TDX - Function Reference`.
+3. Document each function with a short “Role” description.
+4. Add a minimal usage example.
+
+This keeps the repository documentation consistent as new practicals are added.
 
 ## License
 
-See [LICENSE](LICENSE) file for details.
+See [LICENSE](LICENSE).
