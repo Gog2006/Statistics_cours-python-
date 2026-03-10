@@ -12,7 +12,13 @@ This repository is organized by TD modules. Each TD file contains one or more fu
 Statistics_cours-python-/
 ├── README.md
 ├── LICENSE
-└── Td4_Dzhafarov.py
+├── Td4_Dzhafarov.py
+├── td5/
+└── td6/
+	├── Td6.py
+	├── s3.py
+	├── s4.py
+	└── s5.py
 ```
 
 ## Modules Index
@@ -20,6 +26,7 @@ Statistics_cours-python-/
 | TD | File | Scope | Status |
 |----|------|-------|--------|
 | TD4 | `Td4_Dzhafarov.py` | Quartiles, box plots, grouped data, weighted data, demographic analysis | Available |
+| TD6 | `td6/Td6.py`, `td6/s3.py`, `td6/s4.py`, `td6/s5.py` | Charts, descriptive statistics, outlier filtering, regression, clustering | Available |
 | TD1 | _To be added_ | _To be defined_ | Planned |
 | TD2 | _To be added_ | _To be defined_ | Planned |
 | TD3 | _To be added_ | _To be defined_ | Planned |
@@ -56,6 +63,40 @@ an interpolation approach based on `(n+1)/4`. |
 |----------|------|
 | `probleme1()` | Analyzes median/mean age trends by gender over time from CSV data and generates visual output. |
 
+## TD6 - Function Reference
+
+### Basic Charts (`td6/Td6.py`)
+
+| Function | Role |
+|----------|------|
+| `battongrosse(valeurs)` | Draws a histogram for the provided values and saves the figure in non-interactive environments. |
+| `battonfinne(valeurs, effectifs)` | Draws a bar chart from categories and frequencies. |
+| `circul(listedesvaleurs, listedeffectif)` | Draws a pie chart with percentage labels. |
+
+### Descriptive Statistics (`td6/s3.py`)
+
+| Function | Role |
+|----------|------|
+| `ecarttype(...)` | Computes mean and standard deviation for a simple numeric list. |
+| `interquartile(...)` | Computes interquartile range (IQR) and median with a Weibull-style quantile interpolation. |
+
+### Applied Analysis (`td6/s4.py`)
+
+| Function | Role |
+|----------|------|
+| `statresume(...)` | Chooses robust summary statistics when outliers are detected. |
+| `listefilteranddisplay(listebrute, seuil, titre)` | Filters values by frequency threshold and generates summary plots. |
+| `exercice1()` | Loads laptop dataset fields and produces filtered distributions for CPU, GPU, and RAM. |
+| `prepare_data_mindfactory()` | Prepares raw and filtered data pairs (`display_cm`, `price_eur`) for modeling. |
+| `exercice2()` | Runs linear regression on raw and filtered data and returns model parameters/predictions. |
+| `exercice3()` | Performs KMeans clustering on raw and filtered data and returns cluster centers. |
+
+### Filtering Utility (`td6/s5.py`)
+
+| Function | Role |
+|----------|------|
+| `statfiltre(liste_simple, liste_a_modifier=None)` | Iteratively filters values around mean +/- 0.7*std until no strong outlier signal remains. |
+
 ## Requirements
 
 - Python 3.8+
@@ -63,12 +104,17 @@ an interpolation approach based on `(n+1)/4`. |
 - matplotlib
 - pandas
 
+Optional for advanced TD6 steps:
+
+- scipy (preferred linear regression backend)
+- scikit-learn (required for `exercice3()` clustering)
+
 ## Installation
 
 ```bash
 git clone https://github.com/Gog2006/Statistics_cours-python-.git
 cd Statistics_cours-python-
-pip install numpy matplotlib pandas
+pip install numpy matplotlib pandas scipy scikit-learn
 ```
 
 ## Usage
@@ -77,6 +123,13 @@ pip install numpy matplotlib pandas
 
 ```bash
 python Td4_Dzhafarov.py
+```
+
+### Run TD6 scripts
+
+```bash
+python td6/Td6.py
+python td6/s4.py
 ```
 
 ### Run selected functions
@@ -91,10 +144,24 @@ exercice4_tests()
 # probleme1()  # Requires the expected CSV input file path used in the script
 ```
 
+```python
+from td6.Td6 import battongrosse, battonfinne, circul
+from td6.s4 import exercice1, exercice2, exercice3
+
+battongrosse([1, 2, 2, 3, 4])
+battonfinne(["A", "B", "C"], [10, 8, 12])
+circul(["A", "B", "C"], [10, 8, 12])
+
+exercice1()
+exercice2()
+# exercice3()  # Requires scikit-learn
+```
+
 ## Notes
 
 - Most plots are saved as PNG files in the local Downloads directory.
 - `probleme1()` depends on a CSV dataset path currently hardcoded in `Td4_Dzhafarov.py`.
+- TD6 analysis scripts use `td6/mindfactory_updated.csv` when present.
 
 ## Scalability Convention for Future TDs
 
